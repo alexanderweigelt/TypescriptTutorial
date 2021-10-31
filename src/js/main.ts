@@ -2,49 +2,27 @@
  * TypeScript tutorial code
  */
 
-/**
- * Set all friends data
- */
-const friends = [
-    {firstName: 'Alex', age: 47},
-    {firstName: 'Lillie'},
-    {firstName: 'Mia'},
-    {firstName: 'Konstanze'}
-];
+class Main {
+    readonly age: number;
+    readonly name: string;
 
-interface Friends {
-    firstName: string;
-    age?: number;
-}
-
-/**
- * Prints friends firstname
- * @param {*} friends an array of friends
- */
-function printFirstName(friends: Friends[]): void {
-    for (const friend of friends) {
-        hello(friend.firstName);
-        if (friend.age) {
-            age(friend.age, friend.firstName);
-        }
+    constructor(name: string, age: number) {
+        this.age = age;
+        this.name = name;
     }
 }
 
-/**
- * Says hello `name`
- * @param name
- */
-function hello(name: string): void {
-    console.log('Hello ' + name + '!!!');
+class Greeter extends Main {
+    sayHello(): void {
+        console.log('Hello ' + this.name + '!!!');
+    }
+
+    getAge(): void {
+        console.log(this.name + ' is ' + this.age + ' years old');
+    }
 }
 
-/**
- * Gets the friends age
- * @param age
- * @param name
- */
-function age(age: number, name: string): void {
-    console.log(name + ' is ' + age + ' years old');
-}
+const greeter = new Greeter('Alex', 47);
 
-printFirstName(friends);
+greeter.sayHello();
+greeter.getAge();
